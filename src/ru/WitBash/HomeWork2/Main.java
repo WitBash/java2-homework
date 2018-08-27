@@ -11,6 +11,7 @@ public class Main {
                 {"13", "14", "15", "b"}
         };
         sumMembersOfArray(array);
+
     }
 
     public static void sumMembersOfArray(String arr[][]) {
@@ -19,7 +20,7 @@ public class Main {
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[i].length; j++) {
                 try {
-                    if (arr.length != SIZE)
+                    if (arr.length != SIZE | arr[i].length != SIZE)
                         throw new MyArrayDataException();
                     try {
                         numArr[i][j] = Integer.parseInt(arr[i][j]);
