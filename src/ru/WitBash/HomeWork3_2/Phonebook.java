@@ -1,7 +1,5 @@
 package ru.WitBash.HomeWork3_2;
-
 import java.util.*;
-
 public class Phonebook {
     public static void main(String[] args) {
         List<Subscriber> phb = new ArrayList<Subscriber>();
@@ -13,7 +11,6 @@ public class Phonebook {
         phb.add(new Subscriber("Ptachov", "352794"));
         get("Gromov", phb);
     }
-
     public static void get(String surname, List<Subscriber> e) {
         Subscriber[] st = new Subscriber[e.size()];
         st = e.toArray(st);

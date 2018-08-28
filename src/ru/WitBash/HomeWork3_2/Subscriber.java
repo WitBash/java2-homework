@@ -3,7 +3,6 @@ package ru.WitBash.HomeWork3_2;
 public class Subscriber {
     private String surname;
     private String phoneNumber;
-
     public Subscriber(String surname, String phoneNumber) {
         this.surname = surname;
         this.phoneNumber = phoneNumber;
@@ -11,11 +10,9 @@ public class Subscriber {
         subscriber[0] = surname;
         subscriber[1] = phoneNumber;
     }
-
     public String getSurname() {
         return surname;
     }
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
