@@ -1,10 +1,10 @@
 package HomeWork7;
 
-import HomeWork7_1.AuthService;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ClientHandler {
@@ -26,7 +26,7 @@ public class ClientHandler {
                 System.out.println(nick + " handler waiting for new massages");
                 while (socket.isConnected()) {
                     String s = sc.nextLine();
-                    if (s.startsWith("/w")){
+                    if (s.startsWith("/w")) {
                         privateMessage(nick, s);
                         continue;
                     }
@@ -40,7 +40,6 @@ public class ClientHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // new Thread(() -> privateMessage()).start();
     }
 
     /**
@@ -82,19 +81,37 @@ public class ClientHandler {
     }
 
     private void privateMessage(String senderNick, String s) {
-        String[] commands = s.split(" ");
-        if (commands.length >= 3) {
-            String recipientNick = commands[1];
-            String pMsg = commands[2];
+        List<String> commands = new ArrayList<>();
+        String[] com = s.split(" ");
+        for (int i = 0; i < com.length; i++) {
+            commands.add(i, com[i]);
+        }
+        if (commands.size() >= 3) {
+            String recipientNick = commands.get(1);
+            commands.remove(0);
+            commands.remove(0);
+            String[] a = new String[commands.size()];
+            for (int i = 0; i < commands.size(); i++) {
+                a[i] = commands.get(i);
+            }
+            String pMsg = getMessage(a);
             if (recipientNick == null) {
                 String msg = "Invalid nick";
                 System.out.println(msg);
                 pw.println(msg);
             } else if (recipientNick.equals("nick1") || recipientNick.equals("nick2") || recipientNick.equals("nick3")) {
-                server.sendPersonalMessage(recipientNick,senderNick, pMsg);
+                server.sendPersonalMessage(recipientNick, senderNick, pMsg);
 
             }
         }
+    }
+
+    private String getMessage(String[] a) {
+        String personalMessage = "";
+        for (int i = 0; i < a.length; i++) {
+            personalMessage += a[i] + " ";
+        }
+        return personalMessage;
     }
 
     public void sendMessage(String msg) {
