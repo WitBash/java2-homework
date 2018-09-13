@@ -26,7 +26,10 @@ public class ClientHandler {
                 System.out.println(nick + " handler waiting for new massages");
                 while (socket.isConnected()) {
                     String s = sc.nextLine();
-                    if (s.startsWith("/w")) privateMessage(nick, s);
+                    if (s.startsWith("/w")){
+                        privateMessage(nick, s);
+                        continue;
+                    }
                     if (s != null && s.equals("/exit"))
                         server.unsubscribe(this);
                     if (s != null && !s.isEmpty())

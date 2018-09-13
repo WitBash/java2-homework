@@ -88,8 +88,11 @@ public class Server {
 
     public void sendPersonalMessage(String recipientNick,String senderNick,String pMsg) {
         for (ClientHandler client: clients) {
+            if (client.getNick().equals(senderNick))
+                client.sendMessage(senderNick +": "+pMsg);
             if (client.getNick().equals(recipientNick))
                 client.sendMessage(senderNick +": "+pMsg);
+
         }
 
     }
